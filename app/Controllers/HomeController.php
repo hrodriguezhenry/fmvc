@@ -1,18 +1,19 @@
 <?php
-class Pages extends Controllers{
-    private $userModel;
+class HomeController extends Controllers{
+    
     public function __construct(){
-        $this->userModel = $this->model("User");
+        parent::__construct();
+        echo $this->test;
     }
 
     public function home(){
         //Obtener los usuarios
-        $users = $this->userModel->getUsers();
+        $users = $this->model->getUsers();
         $data = [
             "users" => $users
         ];
         
-        $this->view("pages/Home", $data);
+        $this->view("Home/Home", $data);
     }
 
     public function insert(){
@@ -23,7 +24,7 @@ class Pages extends Controllers{
                 "phone" => trim($_POST["phone"]),
             ];
 
-            if($this->userModel->insertUser($data)){
+            if($this->model->insertUser($data)){
                 redirect("");
             } else{
                 die("Algo salió mal");
@@ -35,7 +36,7 @@ class Pages extends Controllers{
                 "telefono" => ""
             ];
 
-            $this->view("pages/insert", $data);
+            $this->view("Home/Insert", $data);
         }
     }
 
@@ -48,14 +49,14 @@ class Pages extends Controllers{
                 "phone" => trim($_POST["phone"]),
             ];
 
-            if($this->userModel->updateUser($data)){
+            if($this->model->updateUser($data)){
                 redirect("");
             } else{
                 die("Algo salió mal");
             }
         } else {
             //Obtener informacion de usuario desde el modelo
-            $user = $this->userModel->getUserId($id);
+            $user = $this->model->getUserId($id);
 
             $data = [
                 "id" => $user->id,
@@ -64,12 +65,12 @@ class Pages extends Controllers{
                 "phone" => $user->phone
             ];
 
-            $this->view("pages/update", $data);
+            $this->view("Home/Update", $data);
         }
     }
 
     public function delete($id){
-        $user = $this->userModel->getUserId($id);
+        $user = $this->model->getUserId($id);
 
         $data = [
             "id" => $user->id,
@@ -83,14 +84,14 @@ class Pages extends Controllers{
                 "id" => $id
             ];
 
-            if($this->userModel->deleteUser($data)){
+            if($this->model->deleteUser($data)){
                 redirect("");
             } else{
                 die("Algo salió mal");
             }
         }
 
-        $this->view("pages/delete", $data);
+        $this->view("Home/Delete", $data);
     }
 }
 ?>

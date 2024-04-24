@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item float-right">
-                        <a href="<?php echo URL_ROUTE; ?>/pages/insert" class="nav-link">Insertar</a>
+                        <a href="<?php echo URL_ROUTE; ?>/home/insert" class="nav-link">Insertar</a>
                     </li>
                 </ul>
             </div>

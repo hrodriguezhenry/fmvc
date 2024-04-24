@@ -1,5 +1,5 @@
 <?php
-class User{
+class HomeModel{
     private $db;
 
     public function __construct(){
